@@ -116,18 +116,19 @@ void setup() {
 }
 
 void loop() {
+    // STANDBY
     int sensorReading = analogRead(porta_sensor);
     
-    if (curReadings < numReadings){ // Sampling
+    if (curReadings < numReadings){
         sumReadings = sumReadings + sensorReading;
         curReadings++;
-    } else {
+    } else{
         curReadings = 0;
         sensorReading = sumReadings/numReadings;
         sumReadings = 0;
         
         Serial.println(sensorReading);
-        if (sensorReading > 30) { // Presence
+        if (sensorReading > 30) {
             
             int brightness = map(sensorReading, 0, 700, 0, 255);
             int thisPitch = map(sensorReading, 0, 700, 300, 1500);
@@ -138,7 +139,7 @@ void loop() {
             tone(porta_buzzer, thisPitch, 10);
             delay(10);
             
-        } else { // Standby
+        } else { // ACTION
             fade();
             if ((millis() - starting_time) > timeout){
                 playTheme();
