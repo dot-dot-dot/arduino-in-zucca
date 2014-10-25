@@ -119,7 +119,7 @@ void loop() {
     // STANDBY
     int sensorReading = analogRead(porta_sensor);
     
-    if (curReadings &lt; numReadings){
+    if (curReadings < numReadings){
         sumReadings += sensorReading;
         curReadings++;
     }
@@ -129,7 +129,7 @@ void loop() {
         sumReadings = 0;
         
         Serial.println(sensorReading);
-        if (sensorReading &gt; 30) {
+        if (sensorReading > 30) {
             
             int brightness = map(sensorReading, 0, 700, 0, 255);
             int thisPitch = map(sensorReading, 0, 700, 300, 1500);
@@ -142,7 +142,7 @@ void loop() {
             
             } else { // ACTION
             fade();
-            if ((millis() - starting_time) &gt; timeout){
+            if ((millis() - starting_time) > timeout){
                 playTheme();
                 starting_time = millis();
             }
@@ -166,7 +166,7 @@ void fade(){
 }
 
 void playTheme(){
-    for (int thisNote = 0; thisNote &lt; 11; thisNote++) {
+    for (int thisNote = 0; thisNote < 11; thisNote++) {
         // to calculate the note duration, take one second
         // divided by the note type.
         //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
