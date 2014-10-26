@@ -27,3 +27,6 @@
 * Pulsazione dei LED invertiti in base alla distanza
 * Risata con velocità in base alla distanza
 
+
+### SCHEMA
+![schema](https://raw.githubusercontent.com/dot-dot-dot/arduino-in-zucca/master/schema_bb.png)
